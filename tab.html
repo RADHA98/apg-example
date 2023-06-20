@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>One Page Website</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+    <header>
+        <a href="#"><img src="images/logo.png" alt=""></a>
+        <ul id="menu">
+            <li><a href="#home" >Home</a></li>
+            <li><a href="#aboutus" >About Us</a></li>
+            <li><a href="#product" >Product</a></li>
+            <li><a href="#pricing" >Pricing</a></li>
+            <li><a href="#contact" >Contact</a></li>
+        </ul>
+    </header>
+    <section id="home">
+        <div class="contentmiddle">
+            <h1></h1>
+            <iframe src="https://sim.unipune.ac.in/SIM_APP/" name="sppupage" width="300px" height="300px"></iframe>
+        </div>
+    </section>
+    <section id="aboutus">
+        <div class="aboutcontent">
+            <h1></h1>
+            <iframe src="https://tekvision.in/" name="tekvision" width="300px" height="300px"></iframe>
+        </div>
+    </section>
+    <section id="product">
+        <h1>This Is Product</h1>
+    </section>
+    <section id="pricing">
+        <h1>This Is Pricing</h1>
+    </section>
+    <section id="contact">
+        <h1>This Is Contact</h1>
+    </section>
+
+    <script>
+        
+        // Handling event on all nav links
+        let links = document.querySelectorAll("header > ul a");
+    links.forEach(link =>
+    {
+        link.addEventListener("click", event =>
+        {
+            console.log(event.target.innerHTML);
+            if(event.target.innerHTML === "Home")
+            {
+                console.log(document.getElementById("home").style.display )
+                document.getElementById("home").style.display = "block";
+                document.getElementById("aboutus").style.display = "none";
+                document.getElementById("product").style.display = "none";
+                document.getElementById("pricing").style.display = "none";
+                document.getElementById("contact").style.display = "none";
+            }
+
+            if (event.target.innerHTML === "About Us") {
+                    document.getElementById("home").style.display = "none";
+                    document.getElementById("aboutus").style.display = "block";
+                    document.getElementById("product").style.display = "none";
+                    document.getElementById("pricing").style.display = "none";
+                    document.getElementById("contact").style.display = "none";
+                }
+
+            if (event.target.innerHTML === "Product") {
+                    document.getElementById("home").style.display = "none";
+                    document.getElementById("aboutus").style.display = "none";
+                    document.getElementById("product").style.display = "block";
+                    document.getElementById("pricing").style.display = "none";
+                    document.getElementById("contact").style.display = "none";
+                }
+                if (event.target.innerHTML === "Pricing") {
+                    document.getElementById("home").style.display = "none";
+                    document.getElementById("aboutus").style.display = "none";
+                    document.getElementById("product").style.display = "none";
+                    document.getElementById("pricing").style.display = "block";
+                    document.getElementById("contact").style.display = "none";
+                }
+                if (event.target.innerHTML === "Contact") {
+                    document.getElementById("home").style.display = "none";
+                    document.getElementById("aboutus").style.display = "none";
+                    document.getElementById("product").style.display = "none";
+                    document.getElementById("pricing").style.display = "none";
+                    document.getElementById("contact").style.display = "block";
+                }
+            })
+        });
+    </script></body></html>
