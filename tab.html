@@ -10,99 +10,99 @@
 <body>
     <header>
         <!-- <a href="#"><img src="images/logo.png" alt=""></a> -->
-        <ul id="menu">
-            <li><a href="#home" tabindex="1" role="tab" aria-selected="false">Home</a></li>
-            <li><a href="#aboutus" tabindex="1" role="tab" aria-selected="false">About Us</a></li>
-            <li><a href="#product" tabindex="1"role="tab" aria-selected="false" >Product</a></li>
-            <li><a href="#pricing" tabindex="1" role="tab" aria-selected="false">Pricing</a></li>
-            <li><a href="#contact" tabindex="1" role="tab" aria-selected="false">Contact</a></li>
+        <ul id="menu" role="tablist">
+            <li><a href="#home" tabindex="0" data-item="0" role="tab" aria-controls="Home">Home</a></li>
+            <li><a href="#aboutus" tabindex="-1" role="tab" aria-controls="about us">About Us</a></li>
+            <li><a href="#product" tabindex="-1" role="tab" aria-controls="product">Product</a></li>
+            <li><a href="#pricing" tabindex="-1" role="tab" aria-controls="pricing">Pricing</a></li>
+            <li><a href="#contact" tabindex="-1" role="tab" aria-controls="contact">Contact</a></li>
         </ul>
     </header>
-    <section id="home">
+    <section id="home" role="tabpanel" aria-labelledby="home">
         <div class="contentmiddle">
             <h1></h1>
             <iframe src="https://sim.unipune.ac.in/SIM_APP/" name="sppupage" width="300px" height="300px"></iframe>
         </div>
     </section>
-    <section id="aboutus">
+    <section id="aboutus" role="tabpanel" aria-labelledby="about us">
         <div class="aboutcontent">
             <h1></h1>
             <iframe src="https://tekvision.in/" name="tekvision" width="300px" height="300px"></iframe>
         </div>
     </section>
-    <section id="product">
+    <section id="product" role="tabpanel" aria-labelledby="product">
         <h1>This Is Product</h1>
     </section>
-    <section id="pricing">
+    <section id="pricing" role="tabpanel" aria-labelledby="pricing">
         <h1>This Is Pricing</h1>
     </section>
-    <section id="contact">
+    <section id="contact" role="tabpanel" aria-labelledby="contact">
         <h1>This Is Contact</h1>
     </section>
 
     <script>
-        
+
         // Handling event on all nav links
         let links = document.querySelectorAll("header > ul a");
-    links.forEach(link =>
-    {
-        link.addEventListener("click", event =>
-        {
-            event.preventDefault();
-            const targetId = event.target.getAttribute("href");
 
-         links.forEach(link => link.setAttribute("aria-selected", "false"));
-            event.target.setAttribute("aria-selected", "true");
-    
 
-            console.log(event.target.innerHTML);
-            if(event.target.innerHTML === "Home")
-            {
-                console.log(document.getElementById("home").style.display )
-                document.getElementById("home").style.display = "block";
-                document.getElementById("aboutus").style.display = "none";
-                document.getElementById("product").style.display = "none";
-                document.getElementById("pricing").style.display = "none";
-                document.getElementById("contact").style.display = "none";
 
-                document.getElementById("home").setAttribute ("aria-selected", "true");
-                document.getElementById("aboutus").setAttribute ("aria-selected", "false");
-                document.getElementById("product").setAttribute ("aria-selected", "false");
-                document.getElementById("pricing").setAttribute ("aria-selected", "false");
-                document.getElementById("contact").setAttribute ("aria-selected", "false");
+        links.forEach(link => {
+            link.addEventListener("click", event => {
+                event.preventDefault();
+                const targetId = event.target.getAttribute("href");
 
-                // document.getElementById("home").focus;
-                event.target.focus();
-            }
+                links.forEach(link => link.setAttribute("aria-selected", "false"));
+                event.target.setAttribute("aria-selected", "true");
 
-            if (event.target.innerHTML === "About Us") {
+
+                console.log(event.target.innerHTML);
+                if (event.target.innerHTML === "Home") {
+                    console.log(document.getElementById("home").style.display)
+                    document.getElementById("home").style.display = "block";
+                    document.getElementById("aboutus").style.display = "none";
+                    document.getElementById("product").style.display = "none";
+                    document.getElementById("pricing").style.display = "none";
+
+                    document.getElementById("contact").style.display = "none";
+                    document.getElementById("home").setAttribute("aria-selected", "true");
+                    document.getElementById("aboutus").setAttribute("aria-selected", "false");
+                    document.getElementById("product").setAttribute("aria-selected", "false");
+                    document.getElementById("pricing").setAttribute("aria-selected", "false");
+                    document.getElementById("contact").setAttribute("aria-selected", "false");
+
+                    // document.getElementById("home").focus;
+                    event.target.focus();
+                }
+
+                if (event.target.innerHTML === "About Us") {
                     document.getElementById("home").style.display = "none";
                     document.getElementById("aboutus").style.display = "block";
                     document.getElementById("product").style.display = "none";
                     document.getElementById("pricing").style.display = "none";
                     document.getElementById("contact").style.display = "none";
-                
-                    document.getElementById("home").setAttribute ("aria-selected", "false");
-                document.getElementById("aboutus").setAttribute ("aria-selected", "true");
-                document.getElementById("product").setAttribute ("aria-selected", "false");
-                document.getElementById("pricing").setAttribute ("aria-selected", "false");
-                document.getElementById("contact").setAttribute ("aria-selected", "false");
 
-                
+                    document.getElementById("home").setAttribute("aria-selected", "false");
+                    document.getElementById("aboutus").setAttribute("aria-selected", "true");
+                    document.getElementById("product").setAttribute("aria-selected", "false");
+                    document.getElementById("pricing").setAttribute("aria-selected", "false");
+                    document.getElementById("contact").setAttribute("aria-selected", "false");
+
+
                 }
 
-            if (event.target.innerHTML === "Product") {
+                if (event.target.innerHTML === "Product") {
                     document.getElementById("home").style.display = "none";
                     document.getElementById("aboutus").style.display = "none";
                     document.getElementById("product").style.display = "block";
                     document.getElementById("pricing").style.display = "none";
                     document.getElementById("contact").style.display = "none";
 
-                    document.getElementById("home").setAttribute ("aria-selected", "false");
-                document.getElementById("aboutus").setAttribute ("aria-selected", "false");
-                document.getElementById("product").setAttribute ("aria-selected", "true");
-                document.getElementById("pricing").setAttribute ("aria-selected", "false");
-                document.getElementById("contact").setAttribute ("aria-selected", "false");
+                    document.getElementById("home").setAttribute("aria-selected", "false");
+                    document.getElementById("aboutus").setAttribute("aria-selected", "false");
+                    document.getElementById("product").setAttribute("aria-selected", "true");
+                    document.getElementById("pricing").setAttribute("aria-selected", "false");
+                    document.getElementById("contact").setAttribute("aria-selected", "false");
 
                 }
                 if (event.target.innerHTML === "Pricing") {
@@ -112,11 +112,11 @@
                     document.getElementById("pricing").style.display = "block";
                     document.getElementById("contact").style.display = "none";
 
-                document.getElementById("home").setAttribute ("aria-selected", "false");
-                document.getElementById("aboutus").setAttribute ("aria-selected", "false");
-                document.getElementById("product").setAttribute ("aria-selected", "false");
-                document.getElementById("pricing").setAttribute ("aria-selected", "true");
-                document.getElementById("contact").setAttribute ("aria-selected", "false");
+                    document.getElementById("home").setAttribute("aria-selected", "false");
+                    document.getElementById("aboutus").setAttribute("aria-selected", "false");
+                    document.getElementById("product").setAttribute("aria-selected", "false");
+                    document.getElementById("pricing").setAttribute("aria-selected", "true");
+                    document.getElementById("contact").setAttribute("aria-selected", "false");
 
                 }
                 if (event.target.innerHTML === "Contact") {
@@ -125,14 +125,57 @@
                     document.getElementById("product").style.display = "none";
                     document.getElementById("pricing").style.display = "none";
                     document.getElementById("contact").style.display = "block";
-                
-                
-                 document.getElementById("home").setAttribute ("aria-selected", "false");
-                document.getElementById("aboutus").setAttribute ("aria-selected", "false");
-                document.getElementById("product").setAttribute ("aria-selected", "false");
-                document.getElementById("pricing").setAttribute ("aria-selected", "false");
-                document.getElementById("contact").setAttribute ("aria-selected", "true");
-              }
+
+
+                    document.getElementById("home").setAttribute("aria-selected", "false");
+                    document.getElementById("aboutus").setAttribute("aria-selected", "false");
+                    document.getElementById("product").setAttribute("aria-selected", "false");
+                    document.getElementById("pricing").setAttribute("aria-selected", "false");
+                    document.getElementById("contact").setAttribute("aria-selected", "true");
+                }
             })
         });
-    </script></body></html>
+
+        //accessible with arrrow keys.
+
+        const menu = document.getElementById("menu");
+        menu.addEventListener("keydown", function (event) {
+
+            if (event.key === "ArrowRight") {
+                //only for navigation
+                if (event.target.parentElement.nextElementSibling) {
+                    console.log("you pressed the  Arrow right key");
+                    console.log(event.target.textContent);
+
+                    event.target.parentElement.nextElementSibling.firstChild
+                        .focus();
+                } else {
+                    //navigate with the help of arrowright first to last element 
+
+                    console.log("higmwty");
+
+                    menu.firstElementChild.lastElementChild.focus();
+                }
+            }
+            else if (event.key === "ArrowLeft") {
+                //console.log("hi");
+                if (event.target.parentElement.previousElementSibling) {
+                    console.log("you pressed the  Arrow Left key");
+                    console.log(event.target.textContent);
+
+                    event.target.parentElement.previousElementSibling.firstChild
+                        .focus();
+                } else {
+                    // navigate with the help of arrow key last to first  element.
+                    console.log("wertyuioi");
+                    console.log(event.target.textContent);
+                    menu.lastElementChild.firstElementChild.focus();
+                }
+            }
+
+        });
+
+    </script>
+</body>
+
+</html>
