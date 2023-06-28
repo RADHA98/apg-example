@@ -45,15 +45,18 @@
         // Handling event on all nav links
         let links = document.querySelectorAll("header > ul a");
 
-
-
         links.forEach(link => {
             link.addEventListener("click", event => {
                 event.preventDefault();
                 const targetId = event.target.getAttribute("href");
 
-                links.forEach(link => link.setAttribute("aria-selected", "false"));
+                links.forEach(link => 
+                link.setAttribute("aria-selected", "false"));
+                // link.setAttribute("tabindex", "-1"));
                 event.target.setAttribute("aria-selected", "true");
+                event.target.setAttribute("tabindex", "0");
+
+                
 
 
                 console.log(event.target.innerHTML);
@@ -63,8 +66,8 @@
                     document.getElementById("aboutus").style.display = "none";
                     document.getElementById("product").style.display = "none";
                     document.getElementById("pricing").style.display = "none";
-
                     document.getElementById("contact").style.display = "none";
+
                     document.getElementById("home").setAttribute("aria-selected", "true");
                     document.getElementById("aboutus").setAttribute("aria-selected", "false");
                     document.getElementById("product").setAttribute("aria-selected", "false");
@@ -72,7 +75,6 @@
                     document.getElementById("contact").setAttribute("aria-selected", "false");
 
                     // document.getElementById("home").focus;
-                    event.target.focus();
                 }
 
                 if (event.target.innerHTML === "About Us") {
@@ -88,7 +90,8 @@
                     document.getElementById("pricing").setAttribute("aria-selected", "false");
                     document.getElementById("contact").setAttribute("aria-selected", "false");
 
-
+                    
+                    
                 }
 
                 if (event.target.innerHTML === "Product") {
@@ -104,6 +107,8 @@
                     document.getElementById("pricing").setAttribute("aria-selected", "false");
                     document.getElementById("contact").setAttribute("aria-selected", "false");
 
+                    
+
                 }
                 if (event.target.innerHTML === "Pricing") {
                     document.getElementById("home").style.display = "none";
@@ -117,6 +122,8 @@
                     document.getElementById("product").setAttribute("aria-selected", "false");
                     document.getElementById("pricing").setAttribute("aria-selected", "true");
                     document.getElementById("contact").setAttribute("aria-selected", "false");
+
+                    
 
                 }
                 if (event.target.innerHTML === "Contact") {
@@ -132,6 +139,9 @@
                     document.getElementById("product").setAttribute("aria-selected", "false");
                     document.getElementById("pricing").setAttribute("aria-selected", "false");
                     document.getElementById("contact").setAttribute("aria-selected", "true");
+                
+                
+                
                 }
             })
         });
@@ -151,24 +161,21 @@
                         .focus();
                 } else {
                     //navigate with the help of arrowright first to last element 
-
                     console.log("higmwty");
-
                     menu.firstElementChild.lastElementChild.focus();
                 }
             }
             else if (event.key === "ArrowLeft") {
-                //console.log("hi");
+                console.log("hi");
                 if (event.target.parentElement.previousElementSibling) {
                     console.log("you pressed the  Arrow Left key");
-                    console.log(event.target.textContent);
+                     console.log(event.target.textContent);
 
-                    event.target.parentElement.previousElementSibling.firstChild
-                        .focus();
+                    event.target.parentElement.previousElementSibling.firstChild.focus();
                 } else {
                     // navigate with the help of arrow key last to first  element.
-                    console.log("wertyuioi");
-                    console.log(event.target.textContent);
+                     console.log("wertyuioi");
+                     console.log(event.target.textContent);
                     menu.lastElementChild.firstElementChild.focus();
                 }
             }
