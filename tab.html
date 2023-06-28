@@ -20,14 +20,14 @@
     </header>
     <section id="home" role="tabpanel" aria-labelledby="home">
         <div class="contentmiddle">
-            <h1></h1>
-            <iframe src="https://sim.unipune.ac.in/SIM_APP/" name="sppupage" width="300px" height="300px"></iframe>
+            <h1>this is home page</h1>
+            <!-- <iframe src="https://sim.unipune.ac.in/SIM_APP/" name="sppupage" width="300px" height="300px"></iframe> -->
         </div>
     </section>
     <section id="aboutus" role="tabpanel" aria-labelledby="about us">
         <div class="aboutcontent">
-            <h1></h1>
-            <iframe src="https://tekvision.in/" name="tekvision" width="300px" height="300px"></iframe>
+            <h1>this aboutus  page</h1>
+            <!-- <iframe src="https://tekvision.in/" name="tekvision" width="300px" height="300px"></iframe> -->
         </div>
     </section>
     <section id="product" role="tabpanel" aria-labelledby="product">
@@ -45,24 +45,23 @@
         // Handling event on all nav links
         let links = document.querySelectorAll("header > ul a");
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 1f4815394bc7e0397e30089f124ab2939ba7bc0f
         links.forEach(link => {
             link.addEventListener("click", event => {
                 event.preventDefault();
                 const targetId = event.target.getAttribute("href");
 
+                
 
                 links.forEach(link => 
                 link.setAttribute("aria-selected", "false"));
                 // link.setAttribute("tabindex", "-1"));
                 event.target.setAttribute("aria-selected", "true");
-                event.target.setAttribute("tabindex", "0");
-
                 
+                links.forEach(link => 
+                link.setAttribute("tabindex", "-1"));
+                event.target.setAttribute("tabindex", "0");
 
 
                 console.log(event.target.innerHTML);
@@ -74,16 +73,20 @@
                     document.getElementById("pricing").style.display = "none";
 
                     document.getElementById("contact").style.display = "none";
-
-
                     document.getElementById("home").setAttribute("aria-selected", "true");
                     document.getElementById("aboutus").setAttribute("aria-selected", "false");
                     document.getElementById("product").setAttribute("aria-selected", "false");
                     document.getElementById("pricing").setAttribute("aria-selected", "false");
                     document.getElementById("contact").setAttribute("aria-selected", "false");
 
-                    // document.getElementById("home").focus;
 
+                    document.getElementById("home").setAttribute("tabindex","0");
+                    document.getElementById("aboutus").setAttribute("tabindex","-1");
+                    document.getElementById("product").setAttribute("tabindex","-1");
+                    document.getElementById("pricing").setAttribute("tabindex","-1");
+                    document.getElementById("contact").setAttribute("tabindex","-1");
+                    // document.getElementById("home").focus;
+                    event.target.focus();
                 }
 
                 if (event.target.innerHTML === "About Us") {
@@ -98,6 +101,12 @@
                     document.getElementById("product").setAttribute("aria-selected", "false");
                     document.getElementById("pricing").setAttribute("aria-selected", "false");
                     document.getElementById("contact").setAttribute("aria-selected", "false");
+
+                    document.getElementById("home").setAttribute("tabindex","-1");
+                    document.getElementById("aboutus").setAttribute("tabindex","0");
+                    document.getElementById("product").setAttribute("tabindex","-1");
+                    document.getElementById("pricing").setAttribute("tabindex","-1");
+                    document.getElementById("contact").setAttribute("tabindex","-1");
 
                 }
 
@@ -114,7 +123,11 @@
                     document.getElementById("pricing").setAttribute("aria-selected", "false");
                     document.getElementById("contact").setAttribute("aria-selected", "false");
 
-
+                    document.getElementById("home").setAttribute("tabindex","-1");
+                    document.getElementById("aboutus").setAttribute("tabindex","-1");
+                    document.getElementById("product").setAttribute("tabindex","0");
+                    document.getElementById("pricing").setAttribute("tabindex","-1");
+                    document.getElementById("contact").setAttribute("tabindex","-1");
                 }
                 if (event.target.innerHTML === "Pricing") {
                     document.getElementById("home").style.display = "none";
@@ -129,7 +142,11 @@
                     document.getElementById("pricing").setAttribute("aria-selected", "true");
                     document.getElementById("contact").setAttribute("aria-selected", "false");
 
-
+                    document.getElementById("home").setAttribute("tabindex","-1");
+                    document.getElementById("aboutus").setAttribute("tabindex","-1");
+                    document.getElementById("product").setAttribute("tabindex","-1");
+                    document.getElementById("pricing").setAttribute("tabindex","0");
+                    document.getElementById("contact").setAttribute("tabindex","-1");
                 }
                 if (event.target.innerHTML === "Contact") {
                     document.getElementById("home").style.display = "none";
@@ -144,7 +161,13 @@
                     document.getElementById("product").setAttribute("aria-selected", "false");
                     document.getElementById("pricing").setAttribute("aria-selected", "false");
                     document.getElementById("contact").setAttribute("aria-selected", "true");
-
+                
+                    document.getElementById("home").setAttribute("tabindex","-1");
+                    document.getElementById("aboutus").setAttribute("tabindex","-1");
+                    document.getElementById("product").setAttribute("tabindex","-1");
+                    document.getElementById("pricing").setAttribute("tabindex","-1");
+                    document.getElementById("contact").setAttribute("tabindex","0");
+                
                 }
             })
         });
@@ -159,16 +182,11 @@
                 if (event.target.parentElement.nextElementSibling) {
                     console.log("you pressed the  Arrow right key");
                     console.log(event.target.textContent);
-
                     event.target.parentElement.nextElementSibling.firstChild
                         .focus();
                 } else {
                     //navigate with the help of arrowright first to last element 
-
-
                     console.log("higmwty");
-
-
                     menu.firstElementChild.lastElementChild.focus();
                 }
             }
@@ -177,14 +195,12 @@
                 if (event.target.parentElement.previousElementSibling) {
                     console.log("you pressed the  Arrow Left key");
                     console.log(event.target.textContent);
-
                     event.target.parentElement.previousElementSibling.firstChild
                         .focus();
                 } else {
                     // navigate with the help of arrow key last to first  element.
-                    console.log("wertyuioi");
+                  ;
                     console.log(event.target.textContent);
-
                     menu.lastElementChild.firstElementChild.focus();
                 }
             }
