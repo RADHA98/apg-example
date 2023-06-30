@@ -36,7 +36,7 @@ const listbox = document.getElementById("listbox");
                         nextElement.setAttribute("tabindex","0");
 
                         currentOption.setAttribute("aria-selected","false");
-                        currentOption.setAttribute("aria-selected","-1");
+                        currentOption.setAttribute("tabindex","-1");
 
 
                         nextElement.focus();
