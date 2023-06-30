@@ -20,43 +20,11 @@
             <div role="option" aria-selected="false" tabindex="-1">Yellow</div>
             <div role="option" aria-selected="false" tabindex="-1">White</div>
             <div role="option" aria-selected="false" tabindex="-1">Green</div>
-            <div role="option" aria-selected="false" tabindex="-1">Friday</div>
+            <div role="option" aria-selected="false" tabindex="-1">pink</div>
             <div role="option" aria-selected="false" tabindex="-1">Purple</div>
         </div>
 
-        <script>
-
-
-
-            const listbox = document.getElementById("listbox");
-
-            listbox.addEventListener("keydown", function (event) {
-                const currentOption = event.target;
-
-                // accessible with arrow keys
-                if (event.key === "ArrowUp") {
-                    event.preventDefault();
-                    if (currentOption.previousElementSibling) {
-                        currentOption.previousElementSibling.focus();
-                    } else {
-                        const lastOption = listbox.lastElementChild;
-                        lastOption.focus();
-                    }
-                } else if (event.key === "ArrowDown") {
-                    event.preventDefault();
-                    if (currentOption.nextElementSibling) {
-                        currentOption.nextElementSibling.focus();
-                    } else {
-                        const firstOption = listbox.firstElementChild;
-                        firstOption.focus();
-                    }
-                }
-            });
-
-
-
-
-        </script>
+        <script src="listbox.js"></script>
 </body>
 
 </html>
