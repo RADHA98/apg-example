@@ -30,6 +30,7 @@ const listbox = document.getElementById("listbox");
                     event.preventDefault();
                     if (currentOption.nextElementSibling) {
 
+                        //accessible with arrow down option is selected
                         const nextElement=currentOption.nextElementSibling;
                         nextElement.setAttribute("aria-selected","true");
                         nextElement.setAttribute("tabindex","0");
@@ -44,16 +45,9 @@ const listbox = document.getElementById("listbox");
                         firstOption.focus();
                     }
                 }
-
-                // when arrow key navigate that time select list -item.
-            //     const options = document.querySelectorAll("[role='option']");
-            //     options.forEach((option) => {
-            //       option.setAttribute("aria-selected", "false");
-            //     });
-            //     currentOption.setAttribute("aria-selected", "true");
              });
               
-            //});
+           
 
 
 
