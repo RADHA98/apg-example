@@ -68,14 +68,7 @@ options.forEach(option => {
   option.addEventListener('keydown', ListItemEnterspace);
 });
 
-// const textbox=document.getElementById("textbox");
-// const colorlist=document.getElementById(".colorlist");
 
-// const options=colorlist.querySelectorAll([role="Option"]);
-
-// textbox.addEventListener("keydown",function(event)){
-
-// }
 
 
 
