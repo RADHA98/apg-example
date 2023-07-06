@@ -13,7 +13,7 @@
            return;
          }
          // enter and space operating on textfield
-         if (!listVisible && (event.key === 'Enter' || event.key === 'Space')) {
+         if (!listVisible && (event.key === 'Enter' || event.key === 'Space'|| (event.altKey && event.key === 'ArrowDown'))) {
            listVisible = true;
            document.getElementById('color-options').style.display = 'block';
            return;
