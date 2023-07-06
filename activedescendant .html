@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List Box</title>
+  <style>
+    .selected {
+      background-color: #ddd;
+    }
+    .colorlist {
+      list-style: none;
+      margin: 0.25em 0;
+      padding: 0.25em;
+      width: auto;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <label>
+    <h1>Choose your favorite color.</h1>
+  </label>
+
+  <span id="colors-list"></span>
+
+  <div>
+    <br>
+    <label for="searchbox">Choose your favorite color:</label>
+    <input type="text" id="textbox">
+    <div class="colorlist" id="color-options">
+      <div class="selected" aria-activedescendant="">Red</div>
+      <div>Black</div>
+      <div>Yellow</div>
+      <div>White</div>
+      <div>Green</div>
+      <div>Pink</div>
+      <div>Purple</div>
+    </div>
+  </div>
+<script src ="activedescendant.js"></script></body>
+ 
+  </html>
