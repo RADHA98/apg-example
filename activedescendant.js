@@ -34,6 +34,7 @@
  
            selected.classList.remove('selected');
            options[selectedIndex].classList.add('selected');
+           document.getElementById('color-options').setAttribute('aria-activedescendant',options[selectedIndex],id);
          }
        }
  
