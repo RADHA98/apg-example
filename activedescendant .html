@@ -29,15 +29,15 @@
   <div>
     <br>
     <label for="searchbox">Choose your favorite color:</label>
-    <input type="text" id="textbox">
-    <div class="colorlist" id="color-options"aria-selected="true">
-      <div class="selected"   aria-activedescendant="">Red</div>
-      <div>Black</div>
-      <div>Yellow</div>
-      <div>White</div>
-      <div>Green</div>
-      <div>Pink</div>
-      <div>Purple</div>
+    <input type="text" id="textbox" aria-activedescendant="selected"  >
+    <div class="colorlist" id="color-options" aria-label="color options" role="listbox" aria-activedescendant="">
+      <div id="Red"     role="option"  class="selected" aria-selected="true">Red</div>
+      <div  id ="Black" role="option">Black</div>
+      <div  id="Yellow" role="option">Yellow</div>
+      <div  id="White"  role="option">White</div>
+      <div  id="Green"  role="option">Green</div>
+      <div  id ="pink"  role="option">Pink</div>
+      <div  id="Purple" role="option">Purple</div>
     </div>
   </div>
 <script src ="activedescendant.js"></script></body>
