@@ -36,6 +36,7 @@ textbox.addEventListener('keydown', function () {
 
       selected.classList.remove('selected');
       options[selectedIndex].classList.add('selected');
+      // active-descandant
       textbox.setAttribute('aria-activedescendant', options[selectedIndex].id);
     }
   }
