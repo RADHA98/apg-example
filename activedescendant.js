@@ -68,5 +68,5 @@ const textbox = document.getElementById('textbox');
 
     function enableMouseClick() {
       const listbox = document.getElementById('color-options');
-      listbox.style.display = 'block';
+      listbox.style.display = 'none';
     }
