@@ -1,72 +1,118 @@
 const textbox = document.getElementById('textbox');
-    const options = document.querySelectorAll('#color-options div');
-    let selectedIndex = 0;
-    let listVisible = false;
+const listbox = document.getElementById('color-options');
 
-    function changeSelection(event) {
-      const selected = document.querySelector('.selected');
+// option is the collection of all list items.
 
-      if (!selected) {
-        options[0].classList.add('selected');
-        options[0].setAttribute('aria-selected', 'true');
-        return;
-      }
+const options = document.querySelectorAll('#color-options div');
+// indicating first element in this array
+let selectedIndex = 0;
+//the initial value is false, it implies that the list is
+// initially hidden or not visible.
+let listVisible = false;
 
-      // Enter, Space, or Alt+ArrowDown to open the list
-      if (!listVisible && (event.key === 'Enter' || event.key === 'Space' || (event.altKey && event.key === 'ArrowDown'))) {
-        listVisible = true;
-        document.getElementById('color-options').style.display = 'block';
-        textbox.setAttribute('aria-expanded', 'true');
-        return;
-      }
+//
+function changeSelection(event) {
 
-      // Esc key to close the list
-      if (listVisible && event.key === 'Escape') {
-        listVisible = false;
-        document.getElementById('color-options').style.display = 'none';
-        textbox.setAttribute('aria-expanded', 'false');
-        return;
-      }
+  //querySelector() method returns the first element that matches a CSS selector
+  const selected = document.querySelector('.selected');
 
-      // Arrow Up and Arrow Down to navigate through options
-      if (listVisible) {
-        if (event.key === 'ArrowDown' && selectedIndex < options.length - 1) {
-          selectedIndex++;
-        } else if (event.key === 'ArrowUp' && selectedIndex > 0) {
-          selectedIndex--;
-        }
+  if (!selected) {
+    //This condition checks if the selected variable is falsy, which means 
+    //there is no element with the class name 'selected' in the document.
+    options[0].classList.add('selected');
+    //This line adds the CSS class name 'selected' to the first element in the options array. It assumes that the options 
+    //array contains a list of elements representing selectable options.
+    options[0].setAttribute('aria-selected', 'true');
+    // if this read the first element in selected.
+    return;
+    
+  }
 
-        selected.classList.remove('selected');
-        selected.setAttribute('aria-selected', 'false');
+  // Enter, Space, or Alt+ArrowDown to open the list
+  if (!listVisible && (event.key === 'Enter' || event.key === 'Space' || (event.altKey && event.key === 'ArrowDown'))) {
+    listVisible = true;
+    listbox.style.display = 'block';
+    textbox.setAttribute('aria-expanded', 'true');
+    return;
+  }
 
-        const newSelected = options[selectedIndex];
-        newSelected.classList.add('selected');
-        newSelected.setAttribute('aria-selected', 'true');
+ // Activating list item by using Enter or Space key
+  if (listVisible && (event.key === 'Enter' || event.key === 'Space')) {
+    const newSelected = options[selectedIndex];
+    handleOptionSelection({ target: newSelected });
+    return;
+  }
 
-        // active-descendant
-        textbox.setAttribute('aria-activedescendant', newSelected.id);
-      }
+  // Esc key to close the list
+  if (listVisible && event.key === 'Escape') {
+    listVisible = false;
+    listbox.style.display = 'none';
+    textbox.setAttribute('aria-expanded', 'false');
+    return;
+  }
+
+  // Arrow Up and Arrow Down to navigate through options
+  if (listVisible) {
+    //if the selectedIndex is less than the index of 
+    //the last option in the options array (selectedIndex < options.length - 1).
+    if (event.key === 'ArrowDown' && selectedIndex < options.length - 1) {
+
+      selectedIndex++;//moving the selection to the next option in the list.
+    } else if (event.key === 'ArrowUp' && selectedIndex > 0) {
+      //selectedIndex is greater than zero (selectedIndex > 0).
+      selectedIndex--;
+      //variable by one, moving the selection to
+      // the previous option in the list.
     }
+//This line removes the CSS class name 'selected' from the selected element.
+    selected.classList.remove('selected');
 
-    textbox.addEventListener('keydown', changeSelection);
+    selected.setAttribute('aria-selected', 'false');
+// It assumes that selectedIndex holds a valid index for the options array.
+    const newSelected = options[selectedIndex];
+   // It visually indicates that the element is selected.
+    newSelected.classList.add('selected');
+    newSelected.setAttribute('aria-selected', 'true');
 
-    function handleOptionSelection(event) {
-      const selectedOption = event.target;
+    // active-descendant
 
-      options.forEach(function (option) {
-        option.classList.remove('selected');
-        option.setAttribute('aria-selected', 'false');
-      });
+    // This attribute is often used to indicate the active
+    // descendant element when navigating through a list or dropdown. 
+    //It assists with screen readers or other 
+    //assistive technologies in providing contextual information
+    textbox.setAttribute('aria-activedescendant', newSelected.id);
+  }
+}
 
-      selectedOption.classList.add('selected');
-      selectedOption.setAttribute('aria-selected', 'true');
-      textbox.value = selectedOption.innerText;
+textbox.addEventListener('keydown', changeSelection);
 
-      document.getElementById('color-options').style.display = 'none';
-      textbox.setAttribute('aria-expanded', 'false');
-    }
+//This line attaches a 'click' event listener to each option element.
+// When an option is clicked, the handleOptionSelection function will be called.
+options.forEach(option => {
+  //forEach: This is an array method that iterates over each element 
+  //in the options array and executes a provided function for each element.
+  option.addEventListener('click', handleOptionSelection);
+});
 
-    function enableMouseClick() {
-      const listbox = document.getElementById('color-options');
-      listbox.style.display = 'none';
-    }
+function handleOptionSelection(event) {
+  // It represents the specific option that triggered the event.
+  const selectedOption = event.target;
+
+  options.forEach(function (option) {
+    option.classList.remove('selected');
+    option.setAttribute('aria-selected', 'false');
+  });
+
+  selectedOption.classList.add('selected');
+  selectedOption.setAttribute('aria-selected', 'true');
+  //It updates the displayed value of the textbox to reflect the selected option.
+  textbox.value = selectedOption.innerText;
+
+  listbox.style.display = 'none';
+  textbox.setAttribute('aria-expanded', 'false');
+}
+
+// navigation with mouse user.
+function enableMouseClick() {
+  listbox.style.display = 'none';
+}
