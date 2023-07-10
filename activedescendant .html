@@ -29,8 +29,8 @@
   <div>
     <br>
     <label for="searchbox">Choose your favorite color:</label>
-    <input type="text" role="combobox" id="textbox" aria-activedescendant="selected"  aria-label="choose color"placeholder="choose your favorite color">
-    <div class="colorlist" id="color-options" aria-label="color options" role="listbox" aria-activedescendant="" onclick="enableMouseClick()">
+    <input type="text" role="combobox" id="textbox" aria-activedescendant="selected" aria-label="choose color"placeholder="choose your favorite color" aria-expanded="false">
+    <div class="colorlist" id="color-options" aria-label="color options" role="listbox" onclick="enableMouseClick()">
       <div id="Red" role="option" class="selected" aria-selected="true" onclick="handleOptionSelection(event)">Red</div>
       <div id="Black" role="option" aria-selected="false"   onclick="handleOptionSelection(event)">Black</div>
       <div id="Yellow" role="option" aria-selected="false"  onclick="handleOptionSelection(event)">Yellow</div>
