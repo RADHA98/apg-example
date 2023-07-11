@@ -25,7 +25,7 @@ function changeSelection(event) {
     options[0].setAttribute('aria-selected', 'true');
     // if this read the first element in selected.
     return;
-    
+
   }
 
   // Enter, Space, or Alt+ArrowDown to open the list
@@ -34,21 +34,23 @@ function changeSelection(event) {
 
     //this line for reading first element of list
 
-    textbox.setAttribute('aria-activedescendant',Red.id);
+    textbox.setAttribute('aria-activedescendant', Red.id);
     listbox.style.display = 'block';
     textbox.setAttribute('aria-expanded', 'true');
     return;
   }
   textbox.addEventListener('keydown', changeSelection);
-  textbox.addEventListener('click', function () {
+  textbox.addEventListener('click', function() {
     listVisible = true;
   });
-  
 
- // Activating list item by using Enter or Space key
+
+  // Activating list item by using Enter or Space key
   if (listVisible && (event.key === 'Enter' || event.key === 'Space')) {
     const newSelected = options[selectedIndex];
-    handleOptionSelection({ target: newSelected });
+    handleOptionSelection({ target:newSelected });
+    //The purpose of the return statement is to 
+    //immediately exit the function and prevent the code from executing any further. 
     return;
   }
 
@@ -73,13 +75,13 @@ function changeSelection(event) {
       //variable by one, moving the selection to
       // the previous option in the list.
     }
-//This line removes the CSS class name 'selected' from the selected element.
+    //This line removes the CSS class name 'selected' from the selected element.
     selected.classList.remove('selected');
 
     selected.setAttribute('aria-selected', 'false');
-// It assumes that selectedIndex holds a valid index for the options array.
+    // It assumes that selectedIndex holds a valid index for the options array.
     const newSelected = options[selectedIndex];
-   // It visually indicates that the element is selected.
+    // It visually indicates that the element is selected.
     newSelected.classList.add('selected');
     newSelected.setAttribute('aria-selected', 'true');
 
@@ -89,11 +91,11 @@ function changeSelection(event) {
     // descendant element when navigating through a list or dropdown. 
     //It assists with screen readers or other 
     //assistive technologies in providing contextual information
-    textbox.setAttribute('aria-activedescendant',newSelected.id);
+    textbox.setAttribute('aria-activedescendant', newSelected.id);
   }
 }
 
-textbox.addEventListener('keydown',changeSelection);
+textbox.addEventListener('keydown', changeSelection);
 
 //This line attaches a 'click' event listener to each option element.
 // When an option is clicked, the handleOptionSelection function will be called.
@@ -115,21 +117,31 @@ function handleOptionSelection(event) {
   selectedOption.classList.add('selected');
   selectedOption.setAttribute('aria-selected', 'true');
   //It updates the displayed value of the textbox to reflect the selected option.
-  textbox.value = selectedOption.innerText;
+  //textbox.value = selectedOption.innerText;
+textbox.value=trimString(selectedOption.innerText);
+// removing whitespaces.
+
+
+  console.log(textbox.value);
 
   listVisible = false; // Reset list visibility
   listbox.style.display = 'none';
   textbox.setAttribute('aria-expanded', 'false');
 
-  
+
 }
 
 // navigation with mouse user.
 function enableMouseClick() {
-  listbox.style.display ='none';
+  listbox.style.display = 'none';
 }
 
-
+function trimString(str) {
+  // specifies the value that the function will give back.
+  // It's like the answer the function provides.
+  return str.trim();
+  //str.trim->string to remove any extra spaces at the beginning or end of the string.
+}
 
 
 
