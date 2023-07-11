@@ -143,9 +143,9 @@ function trimString(str) {
   //str.trim->string to remove any extra spaces at the beginning or end of the string.
 }
 
+//*************************************************************************** */
 
-
-
+//for dropdown 
 
 
 
