@@ -31,10 +31,19 @@ function changeSelection(event) {
   // Enter, Space, or Alt+ArrowDown to open the list
   if (!listVisible && (event.key === 'Enter' || event.key === 'Space' || (event.altKey && event.key === 'ArrowDown'))) {
     listVisible = true;
+    
+    //this line for reading first element of list
+
+    textbox.setAttribute('aria-activedescendant',Red.id);
     listbox.style.display = 'block';
     textbox.setAttribute('aria-expanded', 'true');
     return;
   }
+  textbox.addEventListener('keydown', changeSelection);
+  textbox.addEventListener('click', function () {
+    listVisible = true;
+  });
+  
 
  // Activating list item by using Enter or Space key
   if (listVisible && (event.key === 'Enter' || event.key === 'Space')) {
@@ -108,11 +117,28 @@ function handleOptionSelection(event) {
   //It updates the displayed value of the textbox to reflect the selected option.
   textbox.value = selectedOption.innerText;
 
+  listVisible = false; // Reset list visibility
   listbox.style.display = 'none';
   textbox.setAttribute('aria-expanded', 'false');
+
+  
 }
 
 // navigation with mouse user.
 function enableMouseClick() {
   listbox.style.display = 'none';
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
