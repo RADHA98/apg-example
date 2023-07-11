@@ -31,7 +31,7 @@ function changeSelection(event) {
   // Enter, Space, or Alt+ArrowDown to open the list
   if (!listVisible && (event.key === 'Enter' || event.key === 'Space' || (event.altKey && event.key === 'ArrowDown'))) {
     listVisible = true;
-    
+
     //this line for reading first element of list
 
     textbox.setAttribute('aria-activedescendant',Red.id);
@@ -89,11 +89,11 @@ function changeSelection(event) {
     // descendant element when navigating through a list or dropdown. 
     //It assists with screen readers or other 
     //assistive technologies in providing contextual information
-    textbox.setAttribute('aria-activedescendant', newSelected.id);
+    textbox.setAttribute('aria-activedescendant',newSelected.id);
   }
 }
 
-textbox.addEventListener('keydown', changeSelection);
+textbox.addEventListener('keydown',changeSelection);
 
 //This line attaches a 'click' event listener to each option element.
 // When an option is clicked, the handleOptionSelection function will be called.
@@ -126,7 +126,7 @@ function handleOptionSelection(event) {
 
 // navigation with mouse user.
 function enableMouseClick() {
-  listbox.style.display = 'none';
+  listbox.style.display ='none';
 }
 
 
