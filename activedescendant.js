@@ -12,7 +12,7 @@ let listVisible = false;
 
 //
 function changeSelection(event) {
-
+  
   //querySelector() method returns the first element that matches a CSS selector
   const selected = document.querySelector('.selected');
 
@@ -30,14 +30,18 @@ function changeSelection(event) {
 
   // Enter, Space, or Alt+ArrowDown to open the list
   if (!listVisible && (event.key === 'Enter' || event.key === 'Space' || (event.altKey && event.key === 'ArrowDown'))) {
+    event.preventDefault();
+    
     listVisible = true;
-
+    
     //this line for reading first element of list
 
     textbox.setAttribute('aria-activedescendant', Red.id);
     listbox.style.display = 'block';
     textbox.setAttribute('aria-expanded', 'true');
+    
     return;
+    
   }
   textbox.addEventListener('keydown', changeSelection);
   textbox.addEventListener('click', function() {
@@ -47,6 +51,7 @@ function changeSelection(event) {
 
   // Activating list item by using Enter or Space key
   if (listVisible && (event.key === 'Enter' || event.key === 'Space')) {
+    event.preventDefault();
     const newSelected = options[selectedIndex];
     handleOptionSelection({ target:newSelected });
     //The purpose of the return statement is to 
@@ -67,7 +72,8 @@ function changeSelection(event) {
     //if the selectedIndex is less than the index of 
     //the last option in the options array (selectedIndex < options.length - 1).
     if (event.key === 'ArrowDown' && selectedIndex < options.length - 1) {
-
+console.log("asdfghj");
+      event.preventDefault();
       selectedIndex++;//moving the selection to the next option in the list.
     } else if (event.key === 'ArrowUp' && selectedIndex > 0) {
       //selectedIndex is greater than zero (selectedIndex > 0).
@@ -100,8 +106,8 @@ textbox.addEventListener('keydown', changeSelection);
 //This line attaches a 'click' event listener to each option element.
 // When an option is clicked, the handleOptionSelection function will be called.
 options.forEach(option => {
-  //forEach: This is an array method that iterates over each element 
-  //in the options array and executes a provided function for each element.
+  //forEach:The forEach() method calls a function for each element in an array.
+  // The forEach() method is not executed for empty element
   option.addEventListener('click', handleOptionSelection);
 });
 
@@ -127,7 +133,9 @@ textbox.value=trimString(selectedOption.innerText);
   listVisible = false; // Reset list visibility
   listbox.style.display = 'none';
   textbox.setAttribute('aria-expanded', 'false');
-
+  textbox.focus();
+  event.preventDefault();
+  
 
 }
 
