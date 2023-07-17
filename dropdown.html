@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Box</title>
+    <style>
+        .selected {
+            background-color: rgb(164, 163, 163);
+        }
+
+        .colorlist {
+            display: none;
+        }
+
+        .dropdown-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-icon {
+            position: absolute;
+            top: 50%;
+            /* will make it move right or top */
+            right: 10px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .custom-input {
+            padding-right: 30px;
+            /* Adjust as needed */
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <br>
+        <label for="searchbox">Choose your favorite color:</label>
+        <br>
+        <div class="dropdown-container">
+            <!-- The input field with custom styling and event handler -->
+            <input type="text" class="custom-input" input-field role="combobox" aria-expanded="false"
+                aria-label="Choose your favorite color" placeholder="Choose your favorite color" id="searchbox"
+                aria-activedescendant="" aria-controls="color-options" />
+            <!-- The dropdown icon as a span element -->
+            <span class="dropdown-icon">&#9662;</span>
+        </div>
+        <!-- The list of color options -->
+        <div class="colorlist" id="color-options" x aria-label="color-options" role="listbox">
+            <div role="option" id="Red" class="selected">Red</div>
+            <div role="option" id="Black">Black</div>
+            <div role="option" id="Yellow">Yellow</div>
+            <div role="option" id="White">White</div>
+            <div role="option" id="Green">Green</div>
+            <div role="option" id="Pink">Pink</div>
+            <div role="option" id="Purple">Purple</div>
+        </div>
+    </div>
+
+    <script src="dropdown.js">
+        
+    </script>
+</body>
+
+</html>
