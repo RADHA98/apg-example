@@ -127,6 +127,6 @@ function Dropdown() {
         listVisible = true;
         listbox.style.display = 'block';
         textbox.setAttribute('aria-expanded', 'true');
-          listbox.focus();
+          textbox.focus();
        }
     }
