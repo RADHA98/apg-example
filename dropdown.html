@@ -22,15 +22,14 @@
         .dropdown-icon {
             position: absolute;
             top: 50%;
-            /* will make it move right or top */
+           
             right: 10px;
             transform: translateY(-50%);
             pointer-events: none;
         }
 
-        .custom-input {
+        .dropclass {
             padding-right: 30px;
-            /* Adjust as needed */
         }
     </style>
 </head>
@@ -38,18 +37,18 @@
 <body>
     <div>
         <br>
-        <label for="searchbox">Choose your favorite color:</label>
+        <label for="textbox">Choose your favorite color:</label>
         <br>
         <div class="dropdown-container">
-            <!-- The input field with custom styling and event handler -->
-            <input type="text" class="custom-input" input-field role="combobox" aria-expanded="false"
-                aria-label="Choose your favorite color" placeholder="Choose your favorite color" id="searchbox"
+          
+            <input type="text" class="dropclass"  id="textbox" role="combobox" aria-expanded="false"
+                aria-label="Choose your favorite color" placeholder="Choose your favorite color" 
                 aria-activedescendant="" aria-controls="color-options" />
-            <!-- The dropdown icon as a span element -->
-            <span class="dropdown-icon">&#9662;</span>
+        
+            <span class="dropdown-icon" aria-hidden="true">&#9662;</span>
         </div>
-        <!-- The list of color options -->
-        <div class="colorlist" id="color-options" x aria-label="color-options" role="listbox">
+        
+        <div class="colorlist" id="color-options" aria-label="color-options" role="listbox">
             <div role="option" id="Red" class="selected">Red</div>
             <div role="option" id="Black">Black</div>
             <div role="option" id="Yellow">Yellow</div>
