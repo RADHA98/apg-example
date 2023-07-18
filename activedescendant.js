@@ -109,15 +109,15 @@ inputField.addEventListener("keydown", function(event) {
   }
 });
 
-inputField.addEventListener("keydown", function(event) {
-  if (event.key === "Enter" || event.key === "Space") {
-    listVisible = true;
-    listbox.style.display = "block";
-    textbox.setAttribute("aria-expanded", "true");
-    textbox.setAttribute("aria-activedescendant", options[selectedIndex].id);
-    event.preventDefault();
-  }
-});
+// inputField.addEventListener("keydown", function(event) {
+//   if (event.key === "Enter" || event.key === "Space") {
+//     listVisible = true;
+//     listbox.style.display = "block";
+//     textbox.setAttribute("aria-expanded", "true");
+//     textbox.setAttribute("aria-activedescendant", options[selectedIndex].id);
+//     event.preventDefault();
+//   }
+// });
 function Dropdown() {
       if (listVisible) {
         listVisible = false;
