@@ -3,6 +3,8 @@ const listbox = document.getElementById('color-options');
 
 const options = document.querySelectorAll('#color-options div');
 let selectedIndex = 0;
+//for the focus fixing for mouse user
+let lastSelectedIndex = 0; 
 let listVisible = false;
 
 function changeSelection(event) {
@@ -13,7 +15,6 @@ function changeSelection(event) {
     options[0].setAttribute('aria-selected', 'true');
     return;
   }
-  
 
   if (!listVisible && (event.key === 'Enter' || event.key === 'Space')) {
     event.preventDefault();
@@ -25,7 +26,8 @@ function changeSelection(event) {
   if (!listVisible && (event.altKey && event.key === 'ArrowDown')) {
     event.preventDefault();
     listVisible = true;
-    textbox.setAttribute('aria-activedescendant', options[selectedIndex].id);
+    textbox.setAttribute('aria-activedescendant', options[lastSelectedIndex].id); 
+    // Use the last selected index
     listbox.style.display = 'block';
     textbox.setAttribute('aria-expanded', 'true');
     return;
@@ -73,14 +75,22 @@ options.forEach(option => {
 function handleOptionSelection(event) {
   const selectedOption = event.target;
 
-  options.forEach(function (option) {
+  options.forEach(function (option, index) {
     option.classList.remove('selected');
     option.setAttribute('aria-selected', 'false');
+    if (option === selectedOption) {
+      selectedIndex = index; 
+      // mouse click fixing
+    }
   });
 
   selectedOption.classList.add('selected');
   selectedOption.setAttribute('aria-selected', 'true');
   textbox.value = trimString(selectedOption.innerText);
+//mouse click focus fixing
+  textbox.setAttribute('aria-activedescendant', selectedOption.id);
+  lastSelectedIndex = selectedIndex; 
+
   console.log(textbox.value);
 
   listVisible = false;
@@ -109,24 +119,15 @@ inputField.addEventListener("keydown", function(event) {
   }
 });
 
-// inputField.addEventListener("keydown", function(event) {
-//   if (event.key === "Enter" || event.key === "Space") {
-//     listVisible = true;
-//     listbox.style.display = "block";
-//     textbox.setAttribute("aria-expanded", "true");
-//     textbox.setAttribute("aria-activedescendant", options[selectedIndex].id);
-//     event.preventDefault();
-//   }
-// });
 function Dropdown() {
-      if (listVisible) {
-        listVisible = false;
-        listbox.style.display = 'none';
-        textbox.setAttribute('aria-expanded', 'false');
-      } else {
-        listVisible = true;
-        listbox.style.display = 'block';
-        textbox.setAttribute('aria-expanded', 'true');
-          textbox.focus();
-       }
-    }
+  if (listVisible) {
+    listVisible = false;
+    listbox.style.display = 'none';
+    textbox.setAttribute('aria-expanded', 'false');
+  } else {
+    listVisible = true;
+    listbox.style.display = 'block';
+    textbox.setAttribute('aria-expanded', 'true');
+    textbox.focus();
+  }
+}
