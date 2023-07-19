@@ -81,15 +81,3 @@ function SelectAllCheckboxClick() {
     checkbox.addEventListener('click', handleOptionCheckboxClick);
   }
 
-//   function handleCheckboxEnterKeyPress(event) {
-//     if (event.key === "Enter") {
-//       event.preventDefault(); 
-//       //event.target.click();   
-//     }
-//   }
-
-//   //  Enter key press for each checkbox
-//   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-//   for (const checkbox of checkboxes) {
-//     checkbox.addEventListener('keydown', handleCheckboxEnterKeyPress);
-//   }
