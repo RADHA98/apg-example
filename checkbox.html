@@ -1,60 +1,23 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>checkbox</title>
-</head>
-<body>
-  <h1> checkbox </h1><br>
-  <div tabindex="0" aria-checked="false" role="checkbox">
-    <input type="checkbox" id="select_all" name="select_all">
-    <label for="select_all"> Select All </label><br>
-
-    <input type="checkbox" id="potato" name="potato">
-    <label for="potato">Potato</label><br>
-
-    <input type="checkbox" id="mustard" name="mustard">
-    <label for="mustard">Mustard</label><br>
-
-    <input type="checkbox" id="tomato" name="tomato">
-    <label for="tomato">Tomato</label><br>
-
-    <input type="checkbox" id="carrot" name="carrot">
-    <label for="carrot">Carrot</label><br>
-  </div>
-
-  <script>
-    // Function to handle "Select All" checkbox click
-    function handleSelectAllClick() {
-      const selectAllCheckbox = document.getElementById('select_all');
-      const otherCheckboxes = document.querySelectorAll('input[type="checkbox"]:not(#select_all)');
-
-      for (const checkbox of otherCheckboxes) {
-        checkbox.checked = selectAllCheckbox.checked;
-      }
-    }
-
-    // Add event listener to the "Select All" checkbox
-    const selectAllCheckbox = document.getElementById('select_all');
-    selectAllCheckbox.addEventListener('click', handleSelectAllClick);
-
-
-
-  </script>
-</body>
-</html> -->
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>checkbox</title>
+  <title>checkbox</title><style>
+   /* removing bullet mark */
+   ul {
+  list-style: none;
+}
+  </style>
 </head>
 <body>
   <h1>checkbox</h1><br>
+  <fieldset>
+    <!-- for the grouping label -->
+    <!-- The <fieldset> tag is used to group related elements in a form. -->
+  <legend>Vegetables</legend>
+  <!-- The <fieldset> tag is used to group related elements in a form. -->
   <div>
     <input type="checkbox"  tabindex="1" id="select_all" name="select_all">
     <label for="select_all"> Select All </label><br>
@@ -71,7 +34,7 @@
 
     <li><input type="checkbox" id="carrot" name="carrot" tabindex="5">
     <label for="carrot">Carrot</label><br></li>
-    </ul>
+    </ul></fieldset>
   
   <script src="checkbox.js">
     
