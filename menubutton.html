@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>menu-button</title>
+
+  <style>
+    .menu-container {
+      position: relative;
+    }
+
+    .menu-button,
+    .submenu-button {
+      background-color: #183142;
+      color: #fff;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .submenu {
+      list-style: none;
+      padding: 0;
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #f1f1f1;
+    }
+
+    .submenu li {
+      padding: 8px;
+    }
+
+    .submenu li a {
+      color: #333;
+      text-decoration: none;
+      display: block;
+    }
+
+    .submenu li a:hover {
+      background-color: #ddd;
+    }
+
+    .submenu2 {
+      list-style: none;
+      padding: 0;
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 100%;
+      background-color: #f1f1f1;
+    }
+
+    .submenu2 li {
+      padding: 8px;
+    }
+
+    .submenu2 li a {
+      color: #333;
+      text-decoration: none;
+      display: block;
+    }
+
+    .submenu2 li a:hover {
+      background-color: #ddd;
+    }
+
+    .menu-icon{
+      display: inline; 
+      top: 50%;
+      position: absolute;
+      left:90%;
+    }
+  </style>
+</head>
+<body>
+   
+  
+     
+  <div class="menu-container" role="menu">
+    <button class="menu-button"  onclick="OpenSubmenu()" onkeydown="pressMenuButtonKeyDown(event)">Menu</button>
+
+    <ul class="submenu" id="submenu">
+      <li><a href="#" role="menuitem" tabindex="0">Option 1</a></li>
+      <li><a href="#" role="menuitem" tabindex="0" id="option2" aria-expanded="false" onclick="OpenSubmenu2()">Option 2</a></li>
+      <span class="menu-icon">&#x25B6;</span>
+      <li>
+        <ul class="submenu2" id="submenu2">
+          <li><a href="#" role="menuitem" id="Suboption1" tabindex="0">Suboption 1</a></li>
+          <li><a href="#" role="menuitem" id="Suboption2" tabindex="0">Suboption 2</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <script src="menubutton.js"></script>
+  </body></html>
