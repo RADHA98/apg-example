@@ -57,11 +57,20 @@ function selectOption(option) {
 }
 
 function focusOnDarkGray() {
-    const darkGrayOption = document.querySelector("#listbox > div > div.submenu > div:nth-child(1)");
-    if (darkGrayOption) {
-        selectOption(darkGrayOption);
-    }
+  const darkGrayOption = document.querySelector("#listbox > div > div.submenu.show > div:nth-child(1)");
+  const submenu = document.querySelector(".submenu");
+
+  if (darkGrayOption && submenu.classList.contains("show")) {
+      selectOption(darkGrayOption);
+  } else {
+      const blackOption = document.querySelector("#listbox > div > div:nth-child(2)");
+      if (blackOption) {
+        console.log("hidf")
+          selectOption(blackOption);
+      }
+  }
 }
+
 
 function navigateSubMenuDown() {
     const focusedOption = document.activeElement;
@@ -167,6 +176,7 @@ submenuOptions.forEach((option) => {
         toggleMenu();
     });
 });
+
 
 document.addEventListener("keydown", function (event) {
     if (event.key === "Escape" && isMenuOpen) {
