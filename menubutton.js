@@ -180,7 +180,20 @@ submenuOptions.forEach((option) => {
         toggleMenu();
     });
 });
-
+// closing submenu is arrow left
+document.addEventListener("keydown", function (event) {
+  if (event.key === "ArrowLeft" && isMenuOpen) {
+      const submenu = document.querySelector(".submenu");
+      if (submenu.classList.contains("show")) {
+          submenu.classList.remove("show");
+          focusOnBlack();
+          // submenu.setAttribute("aria-expanded","false");
+      } else {
+          toggleMenu();
+          
+      }
+  }
+});
 
 document.addEventListener("keydown", function (event) {
     if (event.key === "Escape" && isMenuOpen) {
