@@ -1,99 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>menu-button</title>
+    <title>List Box</title>
+    <style>
+        /* Hide the list by default */
+        #listbox {
+            display: none;
+        }
 
-  <style>
-    .menu-container {
-      position: relative;
-    }
+        /* Show the list when the "show" class is applied */
+        #listbox.show {
+            display: block;
+        }
 
-    .menu-button,
-    .submenu-button {
-      background-color: #183142;
-      color: #fff;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+        /* Submenu styling */
+        .submenu {
+            display: none;
+            margin-left: 20px;
+        }
 
-    .submenu {
-      list-style: none;
-      padding: 0;
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: #f1f1f1;
-    }
+        .submenu.show {
+            display: block;
+        }
 
-    .submenu li {
-      padding: 8px;
-    }
+        /* Highlight focused option */
+        [role="menuitem"][tabindex="0"] {
+            box-shadow: 0 0 5px 2px #ccc;
+        }
 
-    .submenu li a {
-      color: #333;
-      text-decoration: none;
-      display: block;
-    }
+        #listbox {
+            display: none;
+            border: 5px solid #535151; /* Add border */
+            background-color: #fff; /* Add background color */
+            padding: 7px; /* Add padding */
+            max-width: 200px; /* Set a maximum width */
+        }
 
-    .submenu li a:hover {
-      background-color: #ddd;
-    }
+        .submenu {
+            display: none;
+            border: 2px solid #ccc; /* Add border to submenu */
+            background-color: #f9f9f9; /* Add background color to submenu */
+            margin-left: 20px;
+            padding: 5px; /* Add padding to submenu */
+            max-width: 180px; /* Set a maximum width for submenu */
+        }
 
-    .submenu2 {
-      list-style: none;
-      padding: 0;
-      display: none;
-      position: absolute;
-      top: 0;
-      left: 100%;
-      background-color: #f1f1f1;
-    }
-
-    .submenu2 li {
-      padding: 8px;
-    }
-
-    .submenu2 li a {
-      color: #333;
-      text-decoration: none;
-      display: block;
-    }
-
-    .submenu2 li a:hover {
-      background-color: #ddd;
-    }
-
-    .menu-icon{
-      display: inline; 
-      top: 50%;
-      position: absolute;
-      left:90%;
-    }
-  </style>
+    </style>
 </head>
-<body>
-   
-  
-     
-  <div class="menu-container" role="menu">
-    <button class="menu-button"  onclick="OpenSubmenu()" onkeydown="pressMenuButtonKeyDown(event)">Menu</button>
 
-    <ul class="submenu" id="submenu">
-      <li><a href="#" role="menuitem" tabindex="0">Option 1</a></li>
-      <li><a href="#" role="menuitem" tabindex="0" id="option2" aria-expanded="false" onclick="OpenSubmenu2()">Option 2</a></li>
-      <span class="menu-icon">&#x25B6;</span>
-      <li>
-        <ul class="submenu2" id="submenu2">
-          <li><a href="#" role="menuitem" id="Suboption1" tabindex="0">Suboption 1</a></li>
-          <li><a href="#" role="menuitem" id="Suboption2" tabindex="0">Suboption 2</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-  <script src="menubutton.js"></script>
-  </body></html>
+<body>
+    <label for="menu-button">
+        <h1>Choose your favorite color.</h1>
+    </label>
+
+    <span id="colors-list"></span>
+    <button id="menu-button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="colors menu-button">menu</button>
+    <div id="listbox" aria-labelledby="colors">
+        <br>
+
+        <div class="colorlist" role="menu" aria-labelledby="colors">
+            <div role="menuitem" tabindex="0">Red</div>
+            <div role="menuitem" tabindex="0" aria-expanded="false" >Black</div>
+
+            <div class="submenu" role="menu"  aria-expanded="false" aria-labelledby="black-submenu">
+                <div role="menuitem" tabindex="0">Dark Gray</div>
+                <div role="menuitem" tabindex="0">Light Gray</div>
+            </div>
+        </div>
+    
+<script src="menubutton.js">
+   
+
+</script>
+
+</body>
+</html>
