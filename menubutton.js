@@ -52,11 +52,12 @@ function selectOption(option) {
 
     // option.setAttribute("aria-selected", "true");
     option.setAttribute("tabindex", "0");
+    //alert("hi");
     option.focus();
 }
 
 function focusOnDarkGray() {
-    const darkGrayOption = document.querySelector(".submenu [role='menuitem'][textContent='Dark Gray']");
+    const darkGrayOption = document.querySelector("#listbox > div > div.submenu > div:nth-child(1)");
     if (darkGrayOption) {
         selectOption(darkGrayOption);
     }
