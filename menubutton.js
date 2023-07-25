@@ -1,5 +1,7 @@
+
 const listbox = document.getElementById("listbox");
 const menuButton = document.getElementById("menu-button");
+
 
 let isMenuOpen = false;
 
@@ -32,6 +34,8 @@ function toggleMenu() {
     menuButton.setAttribute("aria-expanded", isMenuOpen.toString());
 }
 
+
+
 function toggleSubMenu() {
     const submenu = document.querySelector(".submenu");
     submenu.classList.toggle("show");
@@ -44,113 +48,97 @@ function toggleSubMenu() {
 }
 
 function selectOption(option) {
-    const selectedOption = listbox.querySelector("[aria-expanded='false']");
+    const selectedOption = listbox.querySelector("[aria-expanded='true']");
     if (selectedOption) {
-        // selectedOption.setAttribute("aria-selected", "false");
         selectedOption.removeAttribute("tabindex");
     }
 
-    // option.setAttribute("aria-selected", "true");
     option.setAttribute("tabindex", "0");
-    //alert("hi");
     option.focus();
 }
-// this function for the set the focus arrow submenu
+
 function focusOnDarkGray() {
-  const darkGrayOption = document.querySelector("#listbox > div > div.submenu.show > div:nth-child(1)");
-  const submenu = document.querySelector(".submenu");
+    const darkGrayOption = document.querySelector("#listbox .submenu.show [role='menuitem']");
+    const submenu = document.querySelector(".submenu");
 
-  if (darkGrayOption && submenu.classList.contains("show")) {
-      selectOption(darkGrayOption);
-  } 
+    if (darkGrayOption && submenu.classList.contains("show")) {
+        selectOption(darkGrayOption);
+    } 
 }
-function focusOnBlack(){
 
-      const blackOption = document.querySelector("#listbox > div > div:nth-child(2)");
-      if (blackOption) {
-        console.log("hidf")
-          selectOption(blackOption);
-      }
+function focusOnBlack() {
+    const blackOption = document.querySelector(".colorlist .items2");
+    if (blackOption) {
+        selectOption(blackOption);
+    }
+}
+
+function navigateRedBlackUp() {
+    // const colorOptions=document.querySelectorAll("colorlist>div[role=none]>a");
+    const focusedOption = document.activeElement;
+    // selectedIndex=-1;
+    const siblingOptions = focusedOption.parentElement.parentElement.querySelectorAll(".colorlist>div[role=none]>a");
+    const currentIndex = Array.from(siblingOptions).indexOf(focusedOption);
+    const prevIndex = (currentIndex - 1 + siblingOptions.length) % siblingOptions.length;
+    const prevOption = siblingOptions[prevIndex];
+    if (prevOption) {
+        selectOption(prevOption);
+    }
+    
+    
+}
+
+
+
+function navigateRedBlackDown() {
+    const focusedOption = document.activeElement;
+    const siblingOptions = focusedOption.parentElement.parentElement.querySelectorAll(".colorlist>div[role=none]>a");
+    const currentIndex = Array.from(siblingOptions).indexOf(focusedOption);
+    const nextIndex = (currentIndex + 1) % siblingOptions.length;
+    const nextOption = siblingOptions[nextIndex];
+    if (nextOption) {
+        // console.log("hisdfghgjkj")
+        selectOption(nextOption);
+    }
+}
+
+function navigateDarkLightUpDown() {
+  const focusedOption = document.activeElement;
+  const siblingOptions = focusedOption.parentElement.parentElement.querySelectorAll(".submenu [role='menuitem']");
+  const currentIndex = Array.from(siblingOptions).indexOf(focusedOption);
+  const prevIndex = (currentIndex - 1 + siblingOptions.length) % siblingOptions.length;
+  const prevOption = siblingOptions[prevIndex];
+  if (prevOption) {
+    selectOption(prevOption);
   }
+}
 
-
-
-// function navigateSubMenuDown() {
-//     const focusedOption = document.activeElement;
-//     const siblingOptions = focusedOption.parentElement.querySelectorAll("[role='menuitem']");
-//     const currentIndex = Array.from(siblingOptions).indexOf(focusedOption);
-//     const nextIndex = currentIndex + 1;
-//     const numOptions = siblingOptions.length;
-//     // Ensure the next index is within bounds
-//     const newIndex = nextIndex % numOptions;
-//     const nextOption = siblingOptions[newIndex];
-//     if (nextOption) {
-//         selectOption(nextOption);
-//     }
-// }
-
-// function navigateSubMenuUp() {
-//     const focusedOption = document.activeElement;
-//     const siblingOptions = focusedOption.parentElement.querySelectorAll("[role='menuitem']");
-//     const currentIndex = Array.from(siblingOptions).indexOf(focusedOption);
-//     const nextIndex = currentIndex - 1;
-//     const numOptions = siblingOptions.length;
-//     // Ensure the next index is within bounds
-//     const newIndex = (nextIndex + numOptions) % numOptions;
-//     const nextOption = siblingOptions[newIndex];
-//     if (nextOption) {
-//         selectOption(nextOption);
-//     }
-// }
 menuButton.addEventListener("click", toggleMenu);
 
 listbox.addEventListener("keydown", function (event) {
     const currentOption = event.target;
-
-    if (event.key === "ArrowUp") {
+    if (event.key === "ArrowUp" && isMenuOpen) {
         event.preventDefault();
-        if (currentOption.previousElementSibling) {
-            const previousElement = currentOption.previousElementSibling;
-            previousElement.setAttribute("tabindex", "0");
-            currentOption.setAttribute("tabindex", "-1");
-            previousElement.focus();
-        } else {
-            const lastOption = listbox.lastElementChild;
-            lastOption.focus();
-        }
-    } else if (event.key === "ArrowDown") {
+        navigateRedBlackUp();
+    } else if (event.key === "ArrowDown" && isMenuOpen) {
         event.preventDefault();
-        if (currentOption.nextElementSibling) {
-            const nextElement = currentOption.nextElementSibling;
-            nextElement.setAttribute("tabindex", "0");
-            currentOption.setAttribute("tabindex", "-1");
-            nextElement.focus();
-        } else {
-            const firstOption = listbox.firstElementChild;
-            firstOption.focus();
-        }
-    } else if (event.key === "ArrowRight") {
+        navigateRedBlackDown();
+    } else if (event.key === "ArrowRight" && isMenuOpen) {
         event.preventDefault();
         if (currentOption.textContent === "Black") {
             // Toggle submenu visibility for the "Black" option
             toggleSubMenu();
             focusOnDarkGray();
             // Set focus on the "Dark Gray" option
-            
         }
     }
 });
 
-const submenu = document.querySelector(".submenu");
-submenu.addEventListener("keydown", function (event) {
-    const currentOption = event.target;
-    if (event.key === "ArrowUp") {
-        event.preventDefault();
-        navigateSubMenuUp();
-    } else if (event.key === "ArrowDown") {
-        event.preventDefault();
-        // navigateSubMenuDown();
-    }
+document.querySelector(".submenu").addEventListener("keydown", function (event) {
+  if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+    event.preventDefault();
+    navigateDarkLightUpDown();
+  }
 });
 
 document.addEventListener("click", function (event) {
@@ -180,31 +168,37 @@ submenuOptions.forEach((option) => {
         toggleMenu();
     });
 });
-// closing submenu is arrow left
-document.addEventListener("keydown", function (event) {
-  if (event.key === "ArrowLeft" && isMenuOpen) {
-      const submenu = document.querySelector(".submenu");
-      if (submenu.classList.contains("show")) {
-          submenu.classList.remove("show");
-          focusOnBlack();
-          // submenu.setAttribute("aria-expanded","false");
-      } else {
-          toggleMenu();
-          
-      }
-  }
-});
+const listOption = document.querySelector("[role='menuitem']");
+    listOption.addEventListener("keydown", activateOptionWithEnter);
 
-document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape" && isMenuOpen) {
+function activateOptionWithEnter(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            event.target.click();
+        }
+    }
+//  closing only black submenu
+    document.addEventListener("keydown", function (event) {
+    if (event.key === "ArrowLeft" && isMenuOpen) {
         const submenu = document.querySelector(".submenu");
         if (submenu.classList.contains("show")) {
             submenu.classList.remove("show");
             focusOnBlack();
-            // submenu.setAttribute("aria-expanded","false");
+            menuButton.setAttribute("aria-expanded", "false");
+        }
+    }
+});
+
+// Closing  all submenu on ArrowLeft and Escape key
+document.addEventListener("keydown", function (event) {
+    if ( event.key === "Escape" && isMenuOpen) {
+        const submenu = document.querySelector(".submenu");
+        if (submenu.classList.contains("show")) {
+            submenu.classList.remove("show");
+            focusOnBlack();
+            menuButton.setAttribute("aria-expanded", "false");
         } else {
             toggleMenu();
-            
         }
     }
 });
