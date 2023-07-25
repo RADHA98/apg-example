@@ -61,18 +61,218 @@
     <div id="listbox" aria-labelledby="colors">
         <br>
 
-        <div class="colorlist" role="menu" aria-labelledby="colors">
-            <div class="items1" role="menuitem" tabindex="0">Red</div>
-            <div class="items2" role="menuitem" tabindex="0" aria-expanded="false" >Black</div>
+        <div class="colorlist" class="redsubmenu"  role="menu" aria-labelledby="colors">
+            <div role="none"><a href="https://www.w3.org/WAI/WCAG21/quickref/#resize-text"  class="items1" role="menuitem" tabindex="0">Red</a></div>
+           <div role="none"><a  href="https://www.w3.org/WAI/WCAG21/quickref/#keyboard" class="items2" role="menuitem" tabindex="0" aria-expanded="false" >Black</a></div> 
 
-            <div class="submenu" role="menu"  aria-expanded="false" aria-labelledby="black-submenu">
-                <div role="menuitem" tabindex="0">Dark Gray</div>
-                <div role="menuitem" tabindex="0">Light Gray</div>
+            <div class="submenu" role="menu" aria-expanded="false" aria-labelledby="black-submenu">
+                <div role="none"><a href="https://www.w3.org/WAI/WCAG21/quickref/#page-titled" role="menuitem" tabindex="0">Dark Gray</a></div>
+                <div role="none"><a href="https://www.w3.org/WAI/WCAG21/quickref/#focus-visible" role="menuitem" tabindex="0">Light Gray</a></div>
+           
             </div>
+            <div role="none"><a href="https://www.w3.org/WAI/WCAG21/quickref/#resize-text"  class="items1" role="menuitem" tabindex="0">pink</a></div>
+           <div role="none"><a  href="https://www.w3.org/WAI/WCAG21/quickref/#keyboard" class="items2" role="menuitem" tabindex="0" aria-expanded="false" >orange</a></div> 
         </div>
     
-<script src="menubutton.js">
-   
+<script src="menubutton.js" ></script></body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  const listbox = document.getElementById("listbox");
+// const menuButton = document.getElementById("menu-button");
+
+// let isMenuOpen = false;
+
+// function toggleMenu() {
+//     isMenuOpen = !isMenuOpen;
+//     if (isMenuOpen) {
+//         // Add the "show" class to display the list
+//         listbox.classList.add("show");
+
+//         // Set the focus to the first option when the menu opens
+//         const selectedOption = listbox.querySelector("[aria-selected='true']");
+//         if (selectedOption) {
+//             selectedOption.focus();
+//         } else {
+//             const firstOption = listbox.querySelector("[role='menuitem']");
+//             if (firstOption) {
+//                 firstOption.setAttribute("tabindex", "0");
+//                 firstOption.focus();
+//             }
+//         }
+//     } else {
+//         // Remove the "show" class to hide the list
+//         listbox.classList.remove("show");
+
+//         // Set the focus back to the menu button when the menu closes
+//         menuButton.focus();
+//     }
+
+//     // Update the aria-expanded attribute for the "ColorList" button
+//     menuButton.setAttribute("aria-expanded", isMenuOpen.toString());
+// }
+
+// function toggleSubMenu() {
+//     const submenu = document.querySelector(".submenu");
+//     submenu.classList.toggle("show");
+
+//     // Update the aria-expanded attribute for the "Black" color option
+//     const blackOption = document.querySelector(".colorlist .items2");
+//     if (blackOption) {
+//         blackOption.setAttribute("aria-expanded", submenu.classList.contains("show").toString());
+//     }
+// }
+
+// function selectOption(option) {
+//     const selectedOption = listbox.querySelector("[aria-expanded='false']");
+//     if (selectedOption) {
+//         selectedOption.removeAttribute("tabindex");
+//     }
+
+//     option.setAttribute("tabindex", "0");
+//     option.focus();
+// }
+
+// function focusOnDarkGray() {
+//     const darkGrayOption = document.querySelector("#listbox .submenu.show [role='menuitem']");
+//     const submenu = document.querySelector(".submenu");
+
+//     if (darkGrayOption && submenu.classList.contains("show")) {
+//         selectOption(darkGrayOption);
+//     } 
+// }
+
+// function focusOnBlack() {
+//     const blackOption = document.querySelector(".colorlist .items2");
+//     if (blackOption) {
+//         selectOption(blackOption);
+//     }
+// }
+
+// function navigateRedBlackUp() {
+//     const focusedOption = document.activeElement;
+//     const siblingOptions = focusedOption.parentElement.parentElement.querySelectorAll("[role='menuitem']");
+//     const currentIndex = Array.from(siblingOptions).indexOf(focusedOption);
+//     const prevIndex = currentIndex - 1;
+//     const numOptions = siblingOptions.length;
+//     // Ensure the previous index is within bounds
+//     const newIndex = (prevIndex + numOptions) % numOptions;
+//     const prevOption = siblingOptions[newIndex];
+//     if (prevOption) {
+//         selectOption(prevOption);
+//     }
+// }
+
+// function navigateRedBlackDown() {
+//     const focusedOption = document.activeElement;
+//     const siblingOptions = focusedOption.parentElement.parentElement.querySelectorAll("[role='menuitem']");
+//     const currentIndex = Array.from(siblingOptions).indexOf(focusedOption);
+//     const nextIndex = currentIndex + 1;
+//     const numOptions = siblingOptions.length;
+//     // Ensure the next index is within bounds
+//     const newIndex = nextIndex % numOptions;
+//     const nextOption = siblingOptions[newIndex];
+//     if (nextOption) {
+//         selectOption(nextOption);
+//     }
+// }
+
+// menuButton.addEventListener("click", toggleMenu);
+
+// listbox.addEventListener("keydown", function (event) {
+//     const currentOption = event.target;
+//     if (event.key === "ArrowUp" && isMenuOpen) {
+//         event.preventDefault();
+//         navigateRedBlackUp();
+//     } else if (event.key === "ArrowDown" && isMenuOpen) {
+//         event.preventDefault();
+//         navigateRedBlackDown();
+//     } else if (event.key === "ArrowRight" && isMenuOpen) {
+//         event.preventDefault();
+//         if (currentOption.textContent === "Black") {
+//             // Toggle submenu visibility for the "Black" option
+//             toggleSubMenu();
+//             focusOnDarkGray();
+//             // Set focus on the "Dark Gray" option
+//         }
+//     }
+// });
+
+// const submenu = document.querySelector(".submenu");
+// submenu.addEventListener("keydown", function (event) {
+//     const currentOption = event.target;
+//     if (event.key === "ArrowUp") {
+//         event.preventDefault();
+//         navigateSubMenuUp();
+//     } else if (event.key === "ArrowDown") {
+//         event.preventDefault();
+//         navigateSubMenuDown();
+//     }
+// });
+
+// document.addEventListener("click", function (event) {
+//     const target = event.target;
+//     if (isMenuOpen && target !== menuButton && !listbox.contains(target)) {
+//         toggleMenu();
+//     }
+// });
+
+// const colorOptions = document.querySelectorAll(".colorlist [role='menuitem']");
+// colorOptions.forEach((option) => {
+//     option.addEventListener("click", function () {
+//         if (option.textContent === "Black") {
+//             toggleSubMenu();
+//             focusOnDarkGray();
+//         } else {
+//             selectOption(option);
+//             toggleMenu();
+//         }
+//     });
+// });
+
+// const submenuOptions = document.querySelectorAll(".submenu [role='menuitem']");
+// submenuOptions.forEach((option) => {
+//     option.addEventListener("click", function () {
+//         selectOption(option);
+//         toggleMenu();
+//     });
+// });
+
+// // Closing submenu on ArrowLeft and Escape key
+// document.addEventListener("keydown", function (event) {
+//     if ((event.key === "ArrowLeft" || event.key === "Escape") && isMenuOpen) {
+//         const submenu = document.querySelector(".submenu");
+//         if (submenu.classList.contains("show")) {
+//             submenu.classList.remove("show");
+//             focusOnBlack();
+//             menuButton.setAttribute("aria-expanded", "false");
+//         } else {
+//             toggleMenu();
+//         }
+//     }
+// });
+
 
 </script>
 
