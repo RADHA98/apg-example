@@ -31,7 +31,7 @@ function toggleMenu() {
     }
 
     // Update the aria-expanded attribute for the "ColorList" button
-    menuButton.setAttribute("aria-expanded","false", isMenuOpen.toString());
+    menuButton.setAttribute("aria-expanded", isMenuOpen);
 }
 
 
@@ -42,9 +42,9 @@ function toggleSubMenu() {
     submenu.classList.toggle("show");
 
     // Update the aria-expanded attribute for the "Black" color option
-    const blackOption = document.querySelector(".colorlist [role='menuitem'][textContent='Black']");
+    const blackOption = document.querySelector("#listbox > div > div:nth-child(2) > a");
     if (blackOption) {
-        blackOption.setAttribute("aria-expanded", submenu.classList.contains("show").toString());
+        blackOption.setAttribute("aria-expanded", submenu.classList.contains("show"));
     }
 }
 
@@ -197,13 +197,15 @@ function activateOptionWithEnter(event) {
 //  closing only black submenu
     document.addEventListener("keydown", function (event) {
     if (event.key === "ArrowLeft" && isMenuOpen) {
-        console.log("hi good morning");
-        const submenu = document.querySelector(".submenu");
-        if (submenu.classList.contains("show")) {
-            submenu.classList.remove("show");
+        // console.log("hi good morning");
+        // const submenu = document.querySelector(".submenu");
+        // if (submenu.classList.contains("show")) {
+            // submenu.classList.remove("show");
+            toggleSubMenu()
             focusOnBlack();
-            menuButton.setAttribute("aria-expanded", "false");
-        }
+            // menuButton.setAttribute("aria-expanded", "false");
+        
+
     }
 });
 
