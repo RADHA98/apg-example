@@ -2,17 +2,17 @@
 const listbox = document.getElementById("listbox");
 const menuButton = document.getElementById("menu-button");
 
-
 let isMenuOpen = false;
 
 function toggleMenu() {
     isMenuOpen = !isMenuOpen;
+
     if (isMenuOpen) {
         // Add the "show" class to display the list
         listbox.classList.add("show");
 
         // Set the focus to the first option when the menu opens
-        const selectedOption = listbox.querySelector("[aria-selected='true']");
+        const selectedOption = listbox.querySelector("[aria-expanded='true']");
         if (selectedOption) {
             selectedOption.focus();
         } else {
@@ -31,8 +31,9 @@ function toggleMenu() {
     }
 
     // Update the aria-expanded attribute for the "ColorList" button
-    menuButton.setAttribute("aria-expanded", isMenuOpen.toString());
+    menuButton.setAttribute("aria-expanded","false", isMenuOpen.toString());
 }
+
 
 
 
@@ -147,6 +148,22 @@ document.addEventListener("click", function (event) {
         toggleMenu();
     }
 });
+function handleShiftTabNavigation(event) {
+    if (event.shiftKey && event.key === "Tab") {
+    //   event.preventDefault();
+    listbox.setAttribute("aria-expanded","true");
+    }
+  }
+  listbox.addEventListener("keydown", handleShiftTabNavigation);
+
+//  const listbox = document.getElementById("listbox");
+ 
+//   listbox.addEventListener("focusout", () => {
+//     listbox.classList.remove("show");
+    
+//   });
+
+  
 
 const colorOptions = document.querySelectorAll(".colorlist [role='menuitem']");
 colorOptions.forEach((option) => {
@@ -180,6 +197,7 @@ function activateOptionWithEnter(event) {
 //  closing only black submenu
     document.addEventListener("keydown", function (event) {
     if (event.key === "ArrowLeft" && isMenuOpen) {
+        console.log("hi good morning");
         const submenu = document.querySelector(".submenu");
         if (submenu.classList.contains("show")) {
             submenu.classList.remove("show");
